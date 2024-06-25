@@ -22,9 +22,18 @@ app.get("/api/pokemons/:name", async (req, res) => {
     })
     .catch((error) => console.error(error));
 
+  // Sort abilities comparing names
+  const sortedAbilities = pokeApiResponse.abilities.sort((a, b) =>
+    a.ability.name > b.ability.name
+      ? 1
+      : b.ability.name > a.ability.name
+      ? -1
+      : 0
+  );
+
   const data = {
     name: pokeApiResponse.name,
-    abilities: pokeApiResponse.abilities,
+    abilities: sortedAbilities,
     frontSprite: pokeApiResponse.sprites.front_default,
   };
 
