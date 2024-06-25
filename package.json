@@ -1,0 +1,23 @@
+{
+  "name": "poke-api-back",
+  "version": "1.0.0",
+  "description": "A Pokémon API created to fetch Pokémon habilites and return them in alphabetical order",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "poke-api-back"
+  },
+  "keywords": [
+    "pokémon",
+    "api",
+    "back-end"
+  ],
+  "author": "Bruno Helder",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
