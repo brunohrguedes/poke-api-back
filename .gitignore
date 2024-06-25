@@ -1,1 +1,3 @@
 /node_modules
+# In a real project I would ignore the .env file
+# .env 
