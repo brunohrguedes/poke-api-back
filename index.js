@@ -8,7 +8,7 @@ const port = 3000;
 
 app.get("/", (req, res) => {
   res.send(
-    "A Pokémon API created to fetch Pokémon habilites and return them in alphabetical order"
+    "A Pokémon API created to fetch Pokémon abilites and return them in alphabetical order"
   );
 });
 
