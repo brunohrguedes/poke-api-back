@@ -1,26 +1,17 @@
 const { getPokeApiData } = require("./poke-api");
+const { sortAbilities, formatData } = require("./utils/pokemon-utils");
 
 exports.getPokemonData = async (req, res) => {
   const normalizedName = req.params.name.toLowerCase();
 
-  const response = await getPokeApiData(normalizedName);
+  const pokeApiData = await getPokeApiData(normalizedName);
+  if (pokeApiData.status === 404) {
+    res.status(404).send("Pokémon doesn't exist or was spelled incorrectly!");
+    return;
+  }
 
-  // Sort abilities array comparing ability objects names
-  const sortedAbilities = response?.abilities?.sort((a, b) => {
-    if (a.ability.name > b.ability.name) {
-      return 1;
-    }
-    if (b.ability.name > a.ability.name) {
-      return -1;
-    }
-    return 0;
-  });
-
-  const data = {
-    name: response?.name,
-    abilities: sortedAbilities,
-    frontSprite: response?.sprites?.front_default,
-  };
+  const sortedAbilities = sortAbilities(pokeApiData?.data?.abilities);
+  const data = formatData(pokeApiData, sortedAbilities);
 
   res.send(data);
 };

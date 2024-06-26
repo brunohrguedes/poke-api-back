@@ -4,7 +4,9 @@ exports.getPokeApiData = function (name) {
   return axios
     .get(`/pokemon/${name}`)
     .then((response) => {
-      return response.data;
+      return response;
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      return error.response;
+    });
 };
